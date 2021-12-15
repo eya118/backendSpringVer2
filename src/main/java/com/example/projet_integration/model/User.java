@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //Cette annotation indique que la clé primaire est générée de façon automatique
+    @GeneratedValue(strategy = GenerationType.AUTO) //Cette annotation indique que la clé primaire est générée de façon automatique .identity means it's gonna start from 1 and so on
     private Long userId;
     //@NotBlank(message = "Username is required")
     private String username;
@@ -28,7 +28,7 @@ public class User {
     //@Email
     //@NotEmpty(message = "Email is required")
     private String email;
-    //private Instant created;
+    private Instant created;
     private boolean enabled; //il user béch ykoun enabled after the email verification
     private String roles ;
 }
