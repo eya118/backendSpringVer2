@@ -61,6 +61,18 @@ public class AuthController {
         return new ResponseEntity<>("\" spring: you are registered\"",OK);
     }
 
+    @CrossOrigin(origins =  "http://localhost:4200")
+    @GetMapping("/FindByName/{name}")
+    public ResponseEntity<User> FindByName(@PathVariable("name") String name) throws Exception {
+        User userObj=null;
+        if(name!=null){
+           userObj=authService.fetchByUserName(name);
+           return new ResponseEntity<>(userObj, HttpStatus.OK);
+        }
+    
+        
+    }
+
     @PostMapping("/testing")
     public ResponseEntity<String> testing (@RequestBody LoginRequest registerRequest) {
         System.out.println("********username*****"+registerRequest.getUsername()+"**********password********"+registerRequest.getPassword());
@@ -75,7 +87,7 @@ public class AuthController {
         user.setUsername(registerRequest.getUsername());
         user.setPassword(registerRequest.getPassword());
         System.out.println("********username*****"+user.getUsername()+"**********password********"+user.getPassword());
-        if(user!=null && user!=null){
+        if(user!=null){
            userObj=authService.fetchByUsernameAndPassword(user.getUsername(),user.getPassword());
         }
         if(userObj!=null){
