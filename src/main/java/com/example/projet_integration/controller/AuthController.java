@@ -5,6 +5,7 @@ import com.example.projet_integration.dto.RegisterRequest;
 import com.example.projet_integration.model.User;
 import com.example.projet_integration.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,7 +70,7 @@ public class AuthController {
            userObj=authService.fetchByUserName(name);
            return new ResponseEntity<>(userObj, HttpStatus.OK);
         }
-    
+        return new ResponseEntity<>(userObj, NOT_FOUND);
         
     }
 
