@@ -1,5 +1,6 @@
 package com.example.projet_integration.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +12,7 @@ import java.time.Instant;
 
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
-
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
 @Entity
 @Builder
@@ -20,19 +21,27 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Post {
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name="postId")
     private Long postId;
+    @Column(name="postName")
     private String postName;
     @Nullable
+    @Column(name="url")
     private String url;
     @Nullable
     @Lob
+    @Column(name="description")
     private String description;
+    @Column(name="voteCount")
     private Integer voteCount = 0;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User user;
+    @Column(name="createdDate")
     private Instant createdDate;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id")
-    private Categorie categories;
+    @Nullable
+    private Categorie categorie;
+
 }
