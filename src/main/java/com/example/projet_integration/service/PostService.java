@@ -20,32 +20,29 @@ public class PostService {
     @Autowired
     private final PostRepository postRepository ;
 
+
+
+
+
+
+    //adding a single post
     public  void addPost(Post post){
         postRepository.save(post);
     }
+
+
     public List<Post>fetchPostsbypost_id (long id) {
         List<Post> ArrayOfPost = new ArrayList<>();
         ArrayOfPost = postRepository.findAllByPostId(id);
-        for (Post post : ArrayOfPost) {
-            System.out.println(" heyyyyyyy postId " +
-                    post.getPostId()
-                    + post.getPostName() + "post description " +
-                    post.getDescription());
-        }
         return  ArrayOfPost ;
     }
+
+
         public List<Post> fetchPostcategory (long id){
             List<Post> ArrayOfPost = new ArrayList<>();
             ArrayOfPost =  postRepository.findAllByCategorie_id( id);
-            for (Post post :ArrayOfPost) {
-                System.out.println(" heyyyyyyy postId "+
-                        post.getPostId()
-                        +post.getPostName()+"post description "+
-                        post.getDescription() +
-                        post.getCategorie().getName());
-            }
             return  ArrayOfPost ;
-            //return ArrayOfPost.stream().map(PostResponse::mapToDto).collect(toList());
+
 
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import java.time.Instant;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
@@ -38,8 +39,8 @@ public class Post {
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User user;
     @Column(name="createdDate")
-    private Instant createdDate;
-    @ManyToOne(fetch = LAZY)
+    private Instant createdDate= Instant.now();
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "id", referencedColumnName = "id")
     @Nullable
     private Categorie categorie;

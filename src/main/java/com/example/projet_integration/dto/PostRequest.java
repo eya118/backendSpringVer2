@@ -15,8 +15,8 @@ import lombok.ToString;
     @ToString
     public class PostRequest {
 
-        private String categorie; //
-        private String userId ;
+        private Long categorie; //
+        private Long userId ;
     private String postName;
     private Long postId;
     private String url;
