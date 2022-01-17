@@ -15,6 +15,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.OK;
 @Data
 @RestController
+@CrossOrigin(origins =  "http://localhost:4200")
 @RequestMapping("/category")
 @AllArgsConstructor
 public class CategoryController {
@@ -22,19 +23,21 @@ public class CategoryController {
     final CategoryService categoryService ;
 
 
-
+    @CrossOrigin(origins =  "http://localhost:4200")
     @PostMapping("/")
     public ResponseEntity<String> creat(@RequestBody CategoryRequest categoryRequest) {
       categoryService.createCategory(categoryRequest);
         return new ResponseEntity<>("saved",
                 OK);
     }
+    @CrossOrigin(origins =  "http://localhost:4200")
     @GetMapping("/")
     public ResponseEntity getAllCategory(){
         return ResponseEntity
                 .status(OK)
                 .body(categoryService.getAllCategory());
     }
+    @CrossOrigin(origins =  "http://localhost:4200")
     @GetMapping("{id}")
     public ResponseEntity<CategoryRequest>getCategory(@PathVariable Long id){
         return ResponseEntity

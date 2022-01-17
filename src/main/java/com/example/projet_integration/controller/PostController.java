@@ -7,6 +7,7 @@ import com.example.projet_integration.model.Post;
 import com.example.projet_integration.model.User;
 import com.example.projet_integration.repository.CategorieRepository;
 import com.example.projet_integration.repository.PostRepository;
+import com.example.projet_integration.repository.UserRepository;
 import com.example.projet_integration.service.PostService;
 import javafx.geometry.Pos;
 import org.json.JSONObject;
@@ -28,62 +29,79 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.ResponseEntity.status;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/post")
 public class PostController {
 
 
+    @Autowired
+    private PostService postService;
+    @Autowired
+    private PostRepository postRepository;
+    @Autowired
+    private CategorieRepository categorieRepository;
 
     @Autowired
-    private PostService postService ;
-    @Autowired
-    private PostRepository postRepository ;
-    @Autowired private CategorieRepository categorieRepository;
-
+    private UserRepository userRepository;
 
     //adding a single post
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/add")
     public ResponseEntity<Post> addPost(@RequestBody PostRequest postRequest) {
         Post post = new Post();
-        Categorie categorie=new Categorie();
-        categorie.setId(postRequest.getCategorie());
-        User user= new  User();
-        user.setUserId(postRequest.getUserId());
+        Categorie categorie = postRequest.getCategorie();
+        //categorie.setId(postRequest.getCategorie());
+        User user = new User();
+        user=userRepository.findByUserId(postRequest.getUserId());
+        //user.setUserId(postRequest.getUserId());
         post.setPostId(postRequest.getPostId());
         post.setPostName(post.getPostName());
-       post.setCategorie(categorie);
-       post.setDescription(post.getDescription());
-       post.setCreatedDate(Instant.now());
-       post.setUrl(postRequest.getUrl());
-       //post.setUser(user);
+        post.setCategorie(categorie);
+        post.setDescription(post.getDescription());
+        post.setCreatedDate(String.valueOf(Instant.now()).substring(0, 10));
+        post.setUrl(postRequest.getUrl());
+        post.setSolved_(postRequest.isSolved_());
+        post.setCategorie(categorie);
+        post.setUser(user);
+        post.setCategorie(categorie);
+        //post.setUser(user);
         postRepository.save(post);
-       return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     // return a list of all the posts
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/all")
-    public List<Post> getAllPost(){
-        List<Post> allposts=new ArrayList<>();
-        List<Post> posts= postRepository.findAll();
-        allposts=posts ;
-        return  allposts ;
+    public List<Post> getAllPost() {
+        List<Post> allposts = new ArrayList<>();
+        List<Post> posts = postRepository.findAll();
+        allposts = posts;
+        return allposts;
     }
+
     // return a list of all the posts of a single user
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/user")
-    public List<Post> fetchpostByuserId (@RequestBody PostRequest postRequest){
-      List<Post> posts=postService.fetchPostsbypost_id(postRequest.getUserId());
-      return  posts ;
+    public List<Post> fetchpostByuserId(@RequestBody PostRequest postRequest) {
+        List<Post> posts = postService.fetchPostsbypost_id(postRequest.getUserId());
+        return posts;
 
     }
+
     // return a list of all the posts of a single category
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/category")
-    public  List<Post> fetchpostBycategory (@RequestBody PostRequest postRequest){
+    public List<Post> fetchpostBycategory(@RequestBody PostRequest postRequest) {
 
-        List<Post> posts= postService.fetchPostcategory(postRequest.getCategorie());
-        return  posts ;
+        List<Post> posts = postService.fetchPostcategory(postRequest.getCategorie().getId());
+        return posts;
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("category/{id}")
     public ResponseEntity<List<Post>> getPostsBycat(@PathVariable("id") Long id) {
         System.out.println(postService.fetchPostcategory(id));
-        List<Post> posts= postService.fetchPostcategory(id);
+        List<Post> posts = postService.fetchPostcategory(id);
 
         return status(HttpStatus.OK).body(posts);
     }

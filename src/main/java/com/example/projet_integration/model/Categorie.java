@@ -29,7 +29,7 @@ public class Categorie {
     private String description;
     @OneToMany(fetch =EAGER)
     private List<Post> posts;
-    private Instant createdDat=Instant.now();
+    private Instant createdDate=Instant.now();
    // @ManyToOne(fetch = LAZY)
    // private User user;
 

@@ -28,7 +28,7 @@ public class CategoryService {
     public void createCategory(CategoryRequest categoryRequest) {
         Categorie categorie = new Categorie();
         categorie.setName(categoryRequest.getName());
-        categorie.setCreatedDat(Instant.now());
+        categorie.setCreatedDate(Instant.now());
         categorie.setDescription(categoryRequest.getDescription());
         categorieRepository.save(categorie);
     }

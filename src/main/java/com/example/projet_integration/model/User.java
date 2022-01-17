@@ -5,12 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.Instant;
+import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 //good , we still n eed the privilege
@@ -29,6 +28,13 @@ public class User {
     private Instant created= Instant.now();
     private boolean enabled; //il user béch ykoun enabled after the email verification
     private String roles ;
+    @OneToMany(fetch =EAGER)
+    private List<Comment> comments;
+
+
+
+
+
 
 
     public Long getUserId() {

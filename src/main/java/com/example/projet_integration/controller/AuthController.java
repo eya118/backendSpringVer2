@@ -3,6 +3,8 @@ package com.example.projet_integration.controller;
 import com.example.projet_integration.dto.LoginRequest;
 import com.example.projet_integration.dto.RegisterRequest;
 import com.example.projet_integration.model.User;
+import com.example.projet_integration.model.profile;
+import com.example.projet_integration.repository.ProfileRepository;
 import com.example.projet_integration.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,8 @@ import static org.springframework.http.HttpStatus.OK;
 public class AuthController {
     @Autowired
     private AuthService authService;
+    @Autowired
+    private ProfileRepository profileRepository ;
 
 
     @GetMapping("/")
@@ -56,7 +60,10 @@ public class AuthController {
 
         //userRepository.save(user);
         user.setRoles("user");
-
+         profile profile = new profile();
+         profile.setUsername(user.getUsername());
+         profile.setEmail(user.getEmail());
+         profileRepository.save(profile);
         authService.signup(user);
 
         return new ResponseEntity<>("\" spring: you are registered\"",OK);
@@ -92,6 +99,7 @@ public class AuthController {
            userObj=authService.fetchByUsernameAndPassword(user.getUsername(),user.getPassword());
         }
         if(userObj!=null){
+
             return new ResponseEntity<>("\" spring message: you are connected\"",OK);
 
         }

@@ -20,9 +20,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @ToString
 public class CommentRequest {
+    private Long UserId ;
+    private String username ;
     private String text;
     private Long post;
     private Instant createdDate;
+
 
     public String getText() {
         return text;

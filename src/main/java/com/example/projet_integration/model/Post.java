@@ -9,6 +9,8 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
@@ -39,10 +41,16 @@ public class Post {
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User user;
     @Column(name="createdDate")
-    private Instant createdDate= Instant.now();
+    private String createdDate ;
+
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "id", referencedColumnName = "id")
     @Nullable
     private Categorie categorie;
+    private boolean solved_=false ;
+    public String parseInstant (){
+        return  String.valueOf(Instant.now());
+    }
+
 
 }

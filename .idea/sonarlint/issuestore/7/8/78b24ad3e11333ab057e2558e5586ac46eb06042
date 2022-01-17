@@ -1,0 +1,12 @@
+
+h	java:S100""NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õãï©ùÿÿÿÿ
+U
+java:S1854#"?Remove this useless assignment to local variable "ArrayOfPost".(¢þ—¥
+\
+java:S1854*"?Remove this useless assignment to local variable "ArrayOfPost".(¢þ—¥8é‰Û×á/
+n
+java:S1128"LRemove this unused import 'com.example.projet_integration.dto.PostResponse'.(Ž„•·ýÿÿÿÿ8ûæ‚Øá/
+\
+java:S1128"?Remove this unused import 'java.util.stream.Collectors.toList'.(ã‚ºÎ8ûæ‚Øá/
+f	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢þ—¥
+m	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢þ—¥8ì‰Û×á/

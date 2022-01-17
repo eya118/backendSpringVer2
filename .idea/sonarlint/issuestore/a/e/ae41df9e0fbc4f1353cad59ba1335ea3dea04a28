@@ -1,0 +1,13 @@
+
+X	java:S125!"<This block of commented-out lines of code should be removed.(ò²Û»8š›§âß/
+m
+java:S1128"KRemove this unused import 'com.example.projet_integration.model.Categorie'.(ƒœ ûÿÿÿÿ8››§âß/
+[
+java:S1128">Remove this unused import 'org.springframework.lang.Nullable'.(—Ùë8ùİ¥âß/
+K
+java:S1128
+".Remove this unused import 'javax.persistence'.(¬£şç8İò¥âß/
+Y
+java:S1128"=Remove this unused import 'javax.persistence.FetchType.LAZY'.(ŠŞÌ_8øÊ¥âß/
+h
+java:S1128"FRemove this unused import 'javax.persistence.GenerationType.IDENTITY'.(¡®¼­ıÿÿÿÿ8İò¥âß/
