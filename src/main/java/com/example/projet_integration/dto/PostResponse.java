@@ -29,6 +29,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
     private User user;
     private Instant createdDate;
+    public   boolean solved_;
 
     //private Categorie categorie;
     }

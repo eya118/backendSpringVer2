@@ -33,6 +33,7 @@ public class CategoryController {
     @CrossOrigin(origins =  "http://localhost:4200")
     @GetMapping("/")
     public ResponseEntity getAllCategory(){
+        System.out.println("hiopp"+categoryService.getAllCategory());
         return ResponseEntity
                 .status(OK)
                 .body(categoryService.getAllCategory());
